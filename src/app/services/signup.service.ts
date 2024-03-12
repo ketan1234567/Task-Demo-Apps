@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +24,14 @@ export class SignupService {
   getimages(){
     return this.httpClient.get<any>('http://localhost:3000/images')
   }
+  onEditByUser(id: any): Observable<any> {
+    return this.httpClient.get(`http://localhost:3000/signup/${id}`)
+
+  }
+
+  UpdateUser(data:any){
+    return this.httpClient.put<any>(`http://localhost:3000/signup/${data.id}`,data)
+
+  }
+
 }

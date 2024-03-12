@@ -79,7 +79,7 @@
                         padding: 12px" />
                         <div style="display: flex; gap: 10px;">
                           <a href="#" class="btn btn-warning">Edit Photo</a>
-                          <a href="#" class="btn btn-warning">Edit Profile</a>
+                          <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="onEditUser(allData[0].id)">Edit Profile</a>
   
                         </div>
                       
@@ -208,6 +208,9 @@
                                 <div style="display: flex; gap: 30px; justify-content: center;">
                                     <div>
                                         <button type="submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                     <div>
                                         <button type="button" class="btn btn-danger" #closebutton data-dismiss="modal">Cancel</button>
