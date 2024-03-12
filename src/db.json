@@ -1,0 +1,18 @@
+{
+    "signup": [
+      {
+        "name": "kean deshmukh",
+        "email": "deshmukhketan647@gmail.com",
+        "password": "ketan@123",
+        "id": 1
+      },
+      {
+        "name": "vishal deshmukh",
+        "email": "deshmukhvishal647@gmail.com",
+        "password": "vishal@123",
+        "id": 2
+      }
+
+    ]
+  
+  }
