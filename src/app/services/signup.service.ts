@@ -24,6 +24,9 @@ export class SignupService {
   getimages(){
     return this.httpClient.get<any>('http://localhost:3000/images')
   }
+  getimagesedit(id:any){
+    return this.httpClient.get<any>(`http://localhost:3000/images/${id}`)
+  }
   onEditByUser(id: any): Observable<any> {
     return this.httpClient.get(`http://localhost:3000/signup/${id}`)
 

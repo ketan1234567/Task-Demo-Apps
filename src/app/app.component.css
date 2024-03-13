@@ -32,3 +32,6 @@ p {
 .jumbotron{
   margin-bottom: 0px !important;
 }
+.card{
+  border: none;
+}

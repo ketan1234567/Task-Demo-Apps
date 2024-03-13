@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   reactiveForm = new FormGroup({
-    id:new FormControl(),
+    id:new FormControl(3),
     first_name: new FormControl([]),
     last_name: new FormControl(),
     email: new FormControl(),
@@ -95,48 +95,74 @@ export class AppComponent implements OnInit {
 
 
   onSubmit() {
-    
-
-
 
     const formData = this.reactiveForm.value;
-    this._services.userSignUp(this.reactiveForm.value)
-  console.log(formData)
+    if(this.editUser!=null){
+      console.log("Update user");
+      this.http.put<any>(`http://localhost:3000/signup/${formData.id}`, formData)
+      .subscribe(
+        response => {
+          Swal.fire({ text: "Successfully Updated", icon: 'success' })
+            .then(function (result) {
+              (['/curd_Operation'])
 
+            }
 
+            )
+          this.closebutton.nativeElement.click()
+          this.ngOnInit()
+        },
 
-
-
-
-    this.toFilesBase64(this.files, this.selectedFiles).subscribe((res: SelectedFiles[]) => {
-      this.selectedFiles = res;
-      console.log(this.selectedFiles)
-
-
-
-      this.http.post<any>('http://localhost:3000/images', this.selectedFiles)
-        .subscribe(
-          response => {
-            Swal.fire({ text: "Successfully Saved", icon: 'success' })
-              .then(function (result) {
-                (['/curd_Operation'])
-
+        error => {
+          console.error('Error uploading image:', error);
+        }
+      );
+      
+      //this._services.UpdateUser(formData)
+    }else{
+      this._services.userSignUp(this.reactiveForm.value)
+      console.log(formData)
+    
+    
+    
+    
+    
+    
+        this.toFilesBase64(this.files, this.selectedFiles).subscribe((res: SelectedFiles[]) => {
+          this.selectedFiles = res;
+          console.log(this.selectedFiles)
+    
+    
+    
+          this.http.post<any>('http://localhost:3000/images', this.selectedFiles)
+            .subscribe(
+              response => {
+                Swal.fire({ text: "Successfully Saved", icon: 'success' })
+                  .then(function (result) {
+                    (['/curd_Operation'])
+    
+                  }
+    
+                  )
+                this.closebutton.nativeElement.click()
+                this.ngOnInit()
+              },
+    
+              error => {
+                console.error('Error uploading image:', error);
               }
+            );
+          this.reactiveForm.reset()
+    
+          //  console.log(this.selectedFiles[0].base64)
+    
+        });
 
-              )
-            this.closebutton.nativeElement.click()
-            this.ngOnInit()
-          },
+    }
 
-          error => {
-            console.error('Error uploading image:', error);
-          }
-        );
-      this.reactiveForm.reset()
 
-      //  console.log(this.selectedFiles[0].base64)
 
-    });
+   
   }
 
 
